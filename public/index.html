@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tedidevv1 WhatsApp Bot</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <div class="glass-container">
+        <div class="header">
+            <h1>tedidev1<span>BOT</span></h1>
+            <p>Sticker Generator</p>
+        </div>
+
+        <div class="status-box" id="status-box">
+            <div class="spinner" id="loading-spinner"></div>
+            <p class="message-text" id="message">Lagi nyiapin bot, sek ya...</p>
+        </div>
+        
+        <div class="qr-container" id="qr-container">
+            <canvas id="qrcode"></canvas>
+            <p class="instruction">Buka WhatsApp > Perangkat Tertaut > Tautkan Perangkat</p>
+        </div>
+        
+        <div class="ready-container" id="ready-container">
+            <div class="success-icon">✓</div>
+            <h2>Bot Aktif!</h2>
+            <p>Cobalah mengirim media gambar/video lalu balas dengan <strong>!sticker</strong></p>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        const qrContainer = document.getElementById('qr-container');
+        const readyContainer = document.getElementById('ready-container');
+        const statusMessage = document.getElementById('message');
+        const statusBox = document.getElementById('status-box');
+
+        socket.on('message', function(msg) {
+            statusMessage.textContent = msg;
+        });
+
+        socket.on('qr', function(qr) {
+            qrContainer.style.display = 'flex';
+            readyContainer.style.display = 'none';
+            statusBox.className = 'status-box warning';
+            
+            QRCode.toCanvas(document.getElementById('qrcode'), qr, {
+                width: 320,
+                margin: 2,
+                color: {
+                    dark: '#0f172a',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) console.error(error)
+            });
+        });
+
+        socket.on('ready', function(msg) {
+            qrContainer.style.display = 'none';
+            readyContainer.style.display = 'flex';
+            statusBox.className = 'status-box active';
+            statusMessage.textContent = msg || 'Server Online. WhatsApp Sukses Tersambung!';
+        });
+    </script>
+</body>
+</html>
