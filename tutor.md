@@ -1,3 +1,4 @@
+# NOTE JANGAN DIKLAIM PROJECT SENDIRI YA ABANGKU!
 # tutorial instalasi tedidevv1 whatsapp bot
 
 berikut adalah panduan lengkap cara install dan menjalankan bot whatsapp tedidevv1 dari awal.
