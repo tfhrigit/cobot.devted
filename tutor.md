@@ -41,3 +41,5 @@ setelah server bot berhasil berjalan:
 ### 5. bot online dan aktif
 bot tedidevv1 sekarang sudah berjalan dan terkoneksi dengan nomor kamu. fitur-fiturnya (seperti convert video/gambar menjadi stiker) sudah bisa langsung dites di chat. biarkan jendela cmd atau start.bat tersebut tetap terbuka selama kamu ingin bot tetap hidup.
 untuk mematikan server bot, cukup tutup (close) jendela cmd tersebut atau tekan kombinasi `ctrl + c`.
+
+### 6. minus bot ini ketika laptop kamu mati sendiri, bot bakal ikut mati, itu kelemahannya, jika ada solusi mohon kontribusi disini ya!
