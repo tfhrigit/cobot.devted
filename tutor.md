@@ -43,3 +43,5 @@ bot tedidevv1 sekarang sudah berjalan dan terkoneksi dengan nomor kamu. fitur-fi
 untuk mematikan server bot, cukup tutup (close) jendela cmd tersebut atau tekan kombinasi `ctrl + c`.
 
 ### 6. minus bot ini ketika laptop kamu mati sendiri, bot bakal ikut mati, itu kelemahannya, jika ada solusi mohon kontribusi disini ya!
+
+### 7. jika mati, pertama kalo server masih nyala matiin aja cukup `ctrl + c`. dan nyalain lagi servernya pencet start.bat atau ga di terminal root project node index.js
