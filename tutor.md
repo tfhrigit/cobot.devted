@@ -1,3 +1,4 @@
+# NOTE JANGAN DIKLAIM PROJECT SENDIRI YA ABANGKU!
 # tutorial instalasi tedidevv1 whatsapp bot
 
 berikut adalah panduan lengkap cara install dan menjalankan bot whatsapp tedidevv1 dari awal.
@@ -40,3 +41,7 @@ setelah server bot berhasil berjalan:
 ### 5. bot online dan aktif
 bot tedidevv1 sekarang sudah berjalan dan terkoneksi dengan nomor kamu. fitur-fiturnya (seperti convert video/gambar menjadi stiker) sudah bisa langsung dites di chat. biarkan jendela cmd atau start.bat tersebut tetap terbuka selama kamu ingin bot tetap hidup.
 untuk mematikan server bot, cukup tutup (close) jendela cmd tersebut atau tekan kombinasi `ctrl + c`.
+
+### 6. minus bot ini ketika laptop kamu mati sendiri, bot bakal ikut mati, itu kelemahannya, jika ada solusi mohon kontribusi disini ya!
+
+### 7. jika mati, pertama kalo server masih nyala matiin aja cukup `ctrl + c`. dan nyalain lagi servernya pencet start.bat atau ga di terminal root project node index.js
