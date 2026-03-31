@@ -1,9 +1,20 @@
-const { Client, LocalAuth } = require('whatsapp-web.js');
+const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 const express = require('express');
 const { Server } = require('socket.io');
 const http = require('http');
 const ffmpeg = require('ffmpeg-static');
+const axios = require('axios');
 
+async function createTextStickerImage(text) {
+    try {
+        const url = `https://aqul-brat.hf.space/api/brat?text=${encodeURIComponent(text)}`;
+        const response = await axios.get(url, { responseType: 'arraybuffer' });
+        return Buffer.from(response.data).toString('base64');
+    } catch (error) {
+        console.error('Gagal mengambil gambar dari API Brat:', error);
+        throw error;
+    }
+}
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -50,7 +61,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async msg => {
-    // Command !sticker or !s
+    // ketik !sticker atau !s
     if (msg.body === '!sticker' || msg.body === '!s') {
         try {
             if (msg.hasMedia) {
@@ -70,6 +81,26 @@ client.on('message', async msg => {
         } catch (error) {
             console.error('Error saat membuat stiker:', error);
             msg.reply('Yah, ada error waktu bikin stikernya :( Coba lagi ya!');
+        }
+    }
+
+    // ketik !brat atau !tts ya
+    if (msg.body.startsWith('!tts ') || msg.body.startsWith('!ttp ') || msg.body.startsWith('!brat ')) {
+        const prefixMatch = msg.body.match(/^!(tts|ttp|brat) /i);
+        if (!prefixMatch) return;
+        
+        const text = msg.body.slice(prefixMatch[0].length).trim();
+        if (!text) {
+            return msg.reply('Silakan masukkan teksnya! Contoh: *!brat Halo semuanya*');
+        }
+
+        try {
+            const base64Data = await createTextStickerImage(text);
+            const media = new MessageMedia('image/png', base64Data, 'sticker.png');
+            client.sendMessage(msg.from, media, { sendMediaAsSticker: true, stickerName: 'Brat Bot', stickerAuthor: 'tedidevv1' });
+        } catch (error) {
+            console.error('Error saat membuat teks ke stiker:', error);
+            msg.reply('Yah, gagal bikin stiker tesknya :( Coba lagi nanti ya (Mungkin server apinya lagi sibuk).');
         }
     }
 });
