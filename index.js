@@ -18,6 +18,7 @@ async function createTextStickerImage(text) {
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+const SERVER_PORT = 3000;
 
 app.use(express.static('public'));
 
@@ -60,7 +61,12 @@ client.on('ready', () => {
     io.emit('message', 'Botnya udah siap tempur nih.');
 });
 
-client.on('message', async msg => {
+client.on('message_create', async msg => { // pesan di tembak langsung dari sender dan sent from self. sebelumnya tida dapat di lakukan karena pesan yang di buat langsung dari sender tidak memicu event 'message' tapi 'message_create'. jadi untuk pesan yang di buat langsung dari sender harus menggunakan event 'message_create' agar bisa di tangkap dan di proses. untuk pesan yang di buat dari luar (bukan sender) tetap menggunakan event 'message' agar bisa di tangkap dan di proses. jadi untuk pesan yang di buat langsung dari sender harus menggunakan event 'message_create' agar bisa di tangkap dan di proses. untuk pesan yang di buat dari luar (bukan sender) tetap menggunakan event 'message' agar bisa di tangkap dan di proses. jadi untuk pesan yang di buat langsung dari sender harus menggunakan event 'message_create' agar bisa di tangkap dan di proses. untuk pesan yang di buat dari luar (bukan sender) tetap menggunakan event 'message' agar bisa di tangkap dan di proses.
+    /** 
+    issues :
+    media sent from self sent messages doesnt response due the code said message line 63, 
+    message_create is giving a solution to sent and produced the stickers.
+    **/
     // ketik !sticker atau !s
     if (msg.body === '!sticker' || msg.body === '!s') {
         try {
@@ -100,13 +106,13 @@ client.on('message', async msg => {
             client.sendMessage(msg.from, media, { sendMediaAsSticker: true, stickerName: 'Brat Bot', stickerAuthor: 'tedidevv1' });
         } catch (error) {
             console.error('Error saat membuat teks ke stiker:', error);
-            msg.reply('Yah, gagal bikin stiker tesknya :( Coba lagi nanti ya (Mungkin server apinya lagi sibuk).');
+            msg.reply('Yah, gagal bikin stiker teksnya :( Coba lagi nanti ya (Mungkin server apinya lagi sibuk).');
         }
     }
 });
 
 client.initialize();
 
-server.listen(3000, () => {
-    console.log('Server tedidev1 berjalan pada http://localhost:3000');
+server.listen(SERVER_PORT, () => {
+    console.log(`Server tedidev1 berjalan pada http://localhost:${SERVER_PORT}`);
 });
