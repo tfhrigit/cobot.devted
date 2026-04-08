@@ -61,7 +61,7 @@ client.on('ready', () => {
     io.emit('message', 'Botnya udah siap tempur nih.');
 });
 
-client.on('message_create', async msg => { // pesan di tembak langsung dari sender dan sent from self. sebelumnya tida dapat di lakukan karena pesan yang di buat langsung dari sender tidak memicu event 'message' tapi 'message_create'. jadi untuk pesan yang di buat langsung dari sender harus menggunakan event 'message_create' agar bisa di tangkap dan di proses. untuk pesan yang di buat dari luar (bukan sender) tetap menggunakan event 'message' agar bisa di tangkap dan di proses. jadi untuk pesan yang di buat langsung dari sender harus menggunakan event 'message_create' agar bisa di tangkap dan di proses. untuk pesan yang di buat dari luar (bukan sender) tetap menggunakan event 'message' agar bisa di tangkap dan di proses. jadi untuk pesan yang di buat langsung dari sender harus menggunakan event 'message_create' agar bisa di tangkap dan di proses. untuk pesan yang di buat dari luar (bukan sender) tetap menggunakan event 'message' agar bisa di tangkap dan di proses.
+client.on('message_create', async msg => { 
     /** 
     issues :
     media sent from self sent messages doesnt response due the code said message line 63, 
