@@ -14,7 +14,7 @@ sebelum melakukan clone dan menjalankan web bot ini, pastikan laptop kamu sudah 
 4. koneksi internet - wajib ada dan stabil untuk sinkronisasi pesan whatsapp secara real-time.
 5. hp dengan nomer whatsapp aktif - untuk melakukan scan QR code dan menautkan akun whatsapp tumbal.
 
-## langkah-langkah instalasi
+## Langkah-Langkah Instalasi
 
 ### 1. clone repository
 
@@ -83,9 +83,10 @@ untuk mematikan server bot, cukup tutup (_close_) jendela cmd tersebut atau teka
 
 ### 6. limitasi
 
-ada beberapa kekurangan dalam bot in, berikut kekurangan yang sejauh ini di temukan :
+ada beberapa kekurangan dalam bot ini, berikut kekurangan yang sejauh ini di temukan :
 
 1. ketika mengirim perintah `!brat`, `!sticker`, `!tts`, `!ttp` namun tidak ada isi nya atau `null` maka tidak akan muncul error atau peringatan.
+   > this issue was solved
 2. ketika laptop kamu mati sendiri, bot akan ikut mati, itu merupakan kelemahannya, jika ada solusi mohon kontribusi disini ya!
 
 ### 7. cara mematikan dan menghidupkan kembali server
@@ -106,7 +107,7 @@ node_modules
 
 ### 9. troubleshoot
 
-permasalahan yang mungkin temen2 temukan saat menggunakan bot :
+permasalahan yang mungkin temen-temen temukan saat menggunakan bot :
 
 1. expired QR code atau code QR yang kadaluarsa.
    code qr dapat kadaluarsa dalam kurun waktu tertentu dan berubah-ubah secara random, jika bot tidak terdeteksi atau terputus silahkan sambung kembali.

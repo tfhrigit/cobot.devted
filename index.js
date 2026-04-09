@@ -15,6 +15,7 @@ async function createTextStickerImage(text) {
     throw error;
   }
 }
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -78,11 +79,6 @@ client.on("ready", () => {
 });
 
 client.on("message_create", async (msg) => {
-  /** 
-    issues :
-    media sent from self sent messages doesnt response due the code said message line 63, 
-    message_create is giving a solution to sent and produced the stickers.
-    **/
   // ketik !sticker atau !s
   if (msg.body === "!sticker" || msg.body === "!s") {
     try {
