@@ -42,7 +42,7 @@ tunggu proses download bahan-bahan modul ini sampai 100% selesai.
 
 ### 3. cara menjalankan bot
 
-setelah semua modul selesai di-install, kamu bisa langsung mensimulasikan dan menjalankan server bot. ada dua cara:
+setelah semua modul selesai di-install, kamu bisa langsung mensimulasikan dan menjalankan server bot. ada tiga cara:
 
 - klik instan (windows): klik dua kali pada file `start.bat` yang ada di dalam folder aplikasi.
 - via terminal: buka cmd/terminal di folder tersebut, lalu ketik :
@@ -56,12 +56,14 @@ npm run dev
 ```
 npm run start
 ```
+
 ...atau jika ingin manual juga bisa melakukan seperti ini
+
 ```
 node index.js
 ```
 
-keduanya menyalakan server yang sama.
+ketiganya menyalakan server yang sama.
 
 ### 4. hubungkan whatsapp (scan QR code)
 
@@ -103,20 +105,22 @@ node_modules
 ```
 
 ### 9. troubleshoot
+
 permasalahan yang mungkin temen2 temukan saat menggunakan bot :
-1. expired qr code atau code qr yang kadaluarsa
-code qr dapat kadaluarsa dalam kurun waktu tertentu dan berubah2 secara random, jika bot tidak terdeteksi atau terputus silahkan sambung kembali.
+
+1. expired QR code atau code QR yang kadaluarsa.
+   code qr dapat kadaluarsa dalam kurun waktu tertentu dan berubah-ubah secara random, jika bot tidak terdeteksi atau terputus silahkan sambung kembali.
 2. bot disconnected
-bot dapat terputus karena beberapa faktor:
-   - server tertutup  atau mati
+   bot dapat terputus karena beberapa faktor:
+   - server tertutup atau mati
    - sinyal hilang
    - jaringan bermasalah
-3. pupetteer not found atau puppeteer tidak di temukan
-jika menemukan masalah seperti :
+3. puppeteer not found atau puppeteer tidak di temukan
+   jika menemukan masalah seperti :
    ```
    Error: Could not find Chrome (ver. xxx)
    ```
-   dapat disebabkan karena google chrome atau browser tidak terinstal atau terinstall di tempat yang tidak pada umumnya dan puppeteer tidak mampu menemukan lokasi browser yang terinstal.
+   dapat disebabkan karena google chrome atau browser tidak terinstal atau terinstall di tempat yang tidak pada umumnya dan puppeteer tidak mampu menemukan lokasi browser yang terinstal, pastikan Google Chrome, Edge, atau Brave sudah terinstal di lokasi default.
 
 ## List perintah
 
