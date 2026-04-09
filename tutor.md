@@ -56,8 +56,12 @@ npm run dev
 ```
 npm run start
 ```
+...atau jika ingin manual juga bisa melakukan seperti ini
+```
+node index.js
+```
 
-kedua nya menyalakan server yang sama.
+keduanya menyalakan server yang sama.
 
 ### 4. hubungkan whatsapp (scan QR code)
 
@@ -96,8 +100,23 @@ isi `.gitignore` bisa ikuti code berikut :
 node_modules
 .wwebjs_auth
 .wwebjs_cache
-.gitignore
 ```
+
+### 9. troubleshoot
+permasalahan yang mungkin temen2 temukan saat menggunakan bot :
+1. expired qr code atau code qr yang kadaluarsa
+code qr dapat kadaluarsa dalam kurun waktu tertentu dan berubah2 secara random, jika bot tidak terdeteksi atau terputus silahkan sambung kembali.
+2. bot disconnected
+bot dapat terputus karena beberapa faktor:
+   - server tertutup  atau mati
+   - sinyal hilang
+   - jaringan bermasalah
+3. pupetteer not found atau puppeteer tidak di temukan
+jika menemukan masalah seperti :
+   ```
+   Error: Could not find Chrome (ver. xxx)
+   ```
+   dapat disebabkan karena google chrome atau browser tidak terinstal atau terinstall di tempat yang tidak pada umumnya dan puppeteer tidak mampu menemukan lokasi browser yang terinstal.
 
 ## List perintah
 
