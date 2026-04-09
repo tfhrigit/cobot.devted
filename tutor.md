@@ -4,7 +4,7 @@
 
 berikut adalah panduan lengkap cara install dan menjalankan bot whatsapp tedidevv1 dari awal.
 
-## bahan-bahan yang wajib ada di laptop masing-masing
+## Persyaratan Sistem
 
 sebelum melakukan clone dan menjalankan web bot ini, pastikan laptop kamu sudah memiliki bahan-bahan berikut:
 
@@ -101,7 +101,7 @@ node_modules
 
 ## List perintah
 
-untuk melakukan generate stiker temen-temen bisa menggunakan beberapa command di bawah ini :
+untuk melakukan _generate_ stiker, temen-temen bisa menggunakan beberapa command di bawah ini :
 
 | Command    | Alias | Deskripsi                                                                                        |
 | ---------- | ----- | ------------------------------------------------------------------------------------------------ |
