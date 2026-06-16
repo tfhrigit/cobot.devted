@@ -125,7 +125,7 @@ permasalahan yang mungkin temen-temen temukan saat menggunakan bot :
 
 ## List perintah
 
-untuk melakukan _generate_ stiker, temen-temen bisa menggunakan beberapa command di bawah ini :
+untuk melakukan _generate_ stiker dan menjalankan fitur-fitur lainnya, temen-temen bisa menggunakan beberapa command di bawah ini :
 
 | Command    | Alias | Deskripsi                                                                                        |
 | ---------- | ----- | ------------------------------------------------------------------------------------------------ |
@@ -133,6 +133,12 @@ untuk melakukan _generate_ stiker, temen-temen bisa menggunakan beberapa command
 | `!brat`    | -     | Buat stiker teks dengan style brat. contoh: `!brat iki stiker loh rek`                           |
 | `!tts`     | -     | Sama seperti `!brat`                                                                             |
 | `!ttp`     | -     | Sama seperti `!brat`                                                                             |
+| `!ping`    | -     | Cek respon/latency kecepatan bot.                                                                |
+| `!toimg`   | -     | Mengubah stiker menjadi gambar biasa dengan membalas stiker tersebut.                            |
+| `!joke`    | -     | Mengambil candaan/jokes receh bapak-bapak acak khas Indonesia.                                   |
+| `!cuaca`   | -     | Mengecek kondisi cuaca kota secara real-time. contoh: `!cuaca Jakarta`                          |
+| `!ai`      | -     | Tanya jawab dengan asisten pintar AI. contoh: `!ai cara membuat kopi susu`                        |
+| `!draw`    | `!image`| Membuat gambar/ilustrasi menggunakan AI secara instan. contoh: `!draw kucing naik vespa`        |
 
 ---
 

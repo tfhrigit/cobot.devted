@@ -3,6 +3,7 @@ const express = require("express");
 const { Server } = require("socket.io");
 const http = require("http");
 const axios = require("axios");
+
 const { execSync } = require("child_process");
 
 async function createTextStickerImage(text) {
@@ -47,30 +48,31 @@ const stickerNameBratBot = "tedi dev";
 app.use(express.static("public"));
 
 const chromiumPath = getChromiumPath();
-const ffmpegPath = getFfmpegPath();const puppeteerConfig = {
+const ffmpegPath = getFfmpegPath();
+
+const puppeteerConfig = {
   headless: true,
   args: [
     "--no-sandbox",
     "--disable-setuid-sandbox",
     "--disable-dev-shm-usage",
-    "--disable-accelerated-2d-canvas",
     "--no-first-run",
     "--no-zygote",
     "--disable-gpu",
-    "--single-process",
     "--disable-extensions",
     "--disable-background-networking",
     "--disable-sync",
     "--disable-translate",
     "--hide-scrollbars",
     "--mute-audio",
-    "--headless=new",
     "--disable-software-rasterizer",
     "--disable-dbus",
     "--disable-features=site-per-process",
-    "--js-flags=--max-old-space-size=256",
+    "--js-flags=--max-old-space-size=512",
     "--memory-pressure-off",
     "--disable-web-security",
+    "--disable-crash-reporter",
+    "--disable-breakpad",
   ],
 };
 
@@ -122,6 +124,7 @@ client.on("ready", () => {
 });
 
 client.on("message_create", async (msg) => {
+  // --- EXISTING FEATURES ---
   if (msg.body === "!sticker" || msg.body === "!s") {
     try {
       if (msg.hasMedia) {
@@ -178,6 +181,84 @@ client.on("message_create", async (msg) => {
       await msg.reply("Yah, gagal bikin stiker teksnya :( Coba lagi nanti ya (Mungkin server apinya lagi sibuk).");
     }
   }
+
+  // --- NEW FEATURES ---
+
+  // 1. Ping Latency
+  if (msg.body === "!ping") {
+    const timestamp = msg.timestamp * 1000;
+    const latency = Date.now() - timestamp;
+    await msg.reply(`🏓 *Pong!*\nRespon: *${latency} ms*`);
+  }
+
+  // 2. Sticker to Image
+  if (msg.body === "!toimg") {
+    try {
+      if (msg.hasQuotedMsg) {
+        const quotedMsg = await msg.getQuotedMessage();
+        if (quotedMsg.hasMedia && quotedMsg.type === "sticker") {
+          const media = await quotedMsg.downloadMedia();
+          await client.sendMessage(msg.from, media, {
+            caption: "Ini gambar dari stiker di atas!",
+          });
+        } else {
+          await msg.reply("Silakan balas stiker yang ingin diubah menjadi gambar.");
+        }
+      } else {
+        await msg.reply("Balas stiker dengan perintah *!toimg* untuk menjadikannya gambar.");
+      }
+    } catch (error) {
+      console.error("Error toimg:", error);
+      await msg.reply("Gagal mengubah stiker ke gambar.");
+    }
+  }
+
+  // 4. Jokes Lucu (Candaan API)
+  if (msg.body === "!joke" || msg.body === "!jokes") {
+    try {
+      const response = await axios.get("https://candaan-api.vercel.app/api/text/random");
+      if (response.data && response.data.data) {
+        await msg.reply(response.data.data);
+      } else {
+        await msg.reply("Gagal mengambil jokes, coba lagi.");
+      }
+    } catch (error) {
+      console.error("Error joke:", error);
+      await msg.reply("Aduh, gagal mengambil jokes bapak-bapak.");
+    }
+  }
+
+  // 5. Cuaca (wttr.in)
+  if (msg.body.startsWith("!cuaca")) {
+    const city = msg.body.slice(6).trim();
+    if (!city) {
+      return await msg.reply("Silakan masukkan nama kota. Contoh: *!cuaca Jakarta*");
+    }
+    try {
+      const response = await axios.get(`https://wttr.in/${encodeURIComponent(city)}?format=3`);
+      await msg.reply(`*Informasi Cuaca:* \n\n${response.data.trim()}`);
+    } catch (error) {
+      console.error("Error cuaca:", error);
+      await msg.reply(`Gagal mengambil data cuaca untuk kota *${city}*.`);
+    }
+  }
+
+  // 6. AI Chat (Pollinations Text AI)
+  if (msg.body.startsWith("!ai ")) {
+    const query = msg.body.slice(4).trim();
+    if (!query) {
+      return await msg.reply("Silakan masukkan pertanyaan kamu. Contoh: *!ai cara membuat kopi*");
+    }
+    try {
+      const response = await axios.get(`https://text.pollinations.ai/${encodeURIComponent(query)}?system=Kamu+adalah+asisten+WhatsApp+ramah+bernama+tedidev1-bot.+Gunakan+bahasa+Indonesia+yang+santai+dan+akrab.`);
+      await msg.reply(response.data);
+    } catch (error) {
+      console.error("Error AI:", error);
+      await msg.reply("Aduh, asisten AI sedang sibuk. Coba lagi nanti ya!");
+    }
+  }
+
+
 });
 
 client.initialize();
